@@ -1,27 +1,24 @@
 const socialLogin = {
     data() {
         return {
-            code: this.$route.params.code,
             loginResult: {
-                status: '',
-                user: {
-                    userName: '',
-                    userEmail: ''
-                }
+                status: ''
             }
         }
     },
     methods: {
         doSocialLogin(socialType) {
-            console.log('social login type', socialType)
-            const apiPath = '/user/social/' + socialType
+            const apiPath = '/user/social-login'
             const bodyData = {
-                code: this.code
+                code: this.$route.query.code,
+                userType: socialType
             }
-            this.$http.post(apiPath, bodyData).then(response => {
-                console.log('response', response)
-                this.loginResult.user = response.data.user
+            this.$axios.post(apiPath, bodyData).then(response => {
                 this.loginResult.status = 'SUCCESS'
+                console.log('response', response)
+                this.$cookie.setCookie('user-key', response.data.id)
+                window.opener.location.replace('/')
+                window.close()
             }).catch(error => {
                 this.loginResult.status = 'FAIL'
                 console.log('error', error)

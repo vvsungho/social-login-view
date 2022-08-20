@@ -4,15 +4,17 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [
-    {
-        path: '/', name: 'Login', component: () => import('@/views/Login')
-    },
-    {
-        path: '/kakao-login', name: 'KakaoLogin', component: () => import('@/views/KakaoLogin')
-    }
+    { path: '/', name: 'Main', component: () => import('@/views/Main') },
+    { path: '/kakao-login', name: 'KakaoLogin', component: () => import('@/views/KakaoLogin') }
 ]
 
-export default new VueRouter({
+const router = new VueRouter({
     mode: 'history',
-    routes: routes
+    routes,
+    // eslint-disable-next-line no-unused-vars
+    scrollBehavior(to, from, savedPosition) {
+        return { x: 0, y: 0 }
+    }
 })
+
+export default router
