@@ -82,6 +82,9 @@
         <b-card-text>
           <img src="@/assets/kakao_login_button.jpeg" @click="doKakaoLogin()" style="width: 200px;" alt="카카오 로그인" />
         </b-card-text>
+        <b-card-text>
+          <img src="@/assets/naver_login_button.png" @click="doNaverLogin()" style="width: 200px;" alt="카카오 네이버" />
+        </b-card-text>
       </b-card-body>
     </b-card>
   </div>
@@ -128,6 +131,16 @@ export default {
           '&response_type=code&' +
           'scope=account_email birthday gender profile_nickname profile_image'
 
+      this.showSocialLoginPopup(url)
+    },
+    doNaverLogin() {
+      const url = 'https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=' +
+          process.env.VUE_APP_NAVER_CLIENT_ID +
+          '&redirect_uri=' +
+          process.env.VUE_APP_NAVER_REDIRECT_URL +
+          '&state=1234';
+
+      console.log(url)
       this.showSocialLoginPopup(url)
     },
     showSocialLoginPopup(url) {
