@@ -15,7 +15,6 @@ const socialLogin = {
             }
             this.$axios.post(apiPath, bodyData).then(response => {
                 this.loginResult.status = 'SUCCESS'
-                console.log('response', response)
                 this.$cookie.setCookie('user-key', response.data.id)
                 window.opener.location.replace('/')
                 window.close()

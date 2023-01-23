@@ -6,7 +6,8 @@ Vue.use(VueRouter)
 const routes = [
     { path: '/', name: 'Main', component: () => import('@/views/Main') },
     { path: '/kakao-login', name: 'KakaoLogin', component: () => import('@/views/KakaoLogin') },
-    { path: '/naver-login', name: 'NaverLogin', component: () => import('@/views/NaverLogin') }
+    { path: '/naver-login', name: 'NaverLogin', component: () => import('@/views/NaverLogin') },
+    { path: '/google-login', name: 'GoogleLogin', component: () => import('@/views/GoogleLogin') }
 ]
 
 const router = new VueRouter({

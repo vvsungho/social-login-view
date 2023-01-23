@@ -83,7 +83,10 @@
           <img src="@/assets/kakao_login_button.jpeg" @click="doKakaoLogin()" style="width: 200px;" alt="카카오 로그인" />
         </b-card-text>
         <b-card-text>
-          <img src="@/assets/naver_login_button.png" @click="doNaverLogin()" style="width: 200px;" alt="카카오 네이버" />
+          <img src="@/assets/naver_login_button.png" @click="doNaverLogin()" style="width: 200px;" alt="네이버 로그인" />
+        </b-card-text>
+        <b-card-text>
+          <img src="@/assets/google_login_button.png" @click="doGoogleLogin()" style="width: 200px;" alt="구글 로그인" />
         </b-card-text>
       </b-card-body>
     </b-card>
@@ -140,7 +143,16 @@ export default {
           process.env.VUE_APP_NAVER_REDIRECT_URL +
           '&state=1234';
 
-      console.log(url)
+      this.showSocialLoginPopup(url)
+    },
+    doGoogleLogin() {
+      const url = 'https://accounts.google.com/o/oauth2/v2/auth?client_id=' +
+          process.env.VUE_APP_GOOGLE_CLIENT_ID +
+          '&redirect_uri=' +
+          process.env.VUE_APP_GOOGLE_REDIRECT_URL +
+          '&response_type=code' +
+          '&scope=email profile';
+
       this.showSocialLoginPopup(url)
     },
     showSocialLoginPopup(url) {
